@@ -1,0 +1,35 @@
+<!-- Login Form -->
+<app-alert *ngIf="showAlert" [colour]="alertColour">
+    {{ alertMsg }}
+  </app-alert>
+
+<form #reviewForm="ngForm" (ngSubmit)="sendReview()">
+    <!-- Email -->
+    <div class="mb-3">
+        <label class="inline-block mb-2">Review</label>
+        <textarea #revText="ngModel"
+        type="text" name="revText" [(ngModel)]="review.text"
+        rows="5"
+         class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+          duration-500 focus:outline-none rounded bg-transparent
+          focus:border-green-400" placeholder="Enter Review" required></textarea>
+          <p *ngIf="revText.errors && revText.touched && revText.dirty" class="text-red-400">
+            Review is invalid
+          </p>
+    </div>
+    <div class="mb-3">
+      <button mat-icon-button [color]="color" *ngFor="let ratingId of ratingArr;index as i" [id]="'star_'+i" (click)="onClick(i+1)" [matTooltip]="'' + (ratingId+1)" matTooltipPosition="above">
+        <mat-icon>
+          {{showIcon(i)}}
+        </mat-icon>
+      </button>
+      <p *ngIf="starCount == null || starCount == 0">
+        Star count is <strong>required</strong> and cannot be zero
+      </p>
+    </div>
+    <button type="submit" [disabled]="reviewForm.invalid || inSubmission"
+    class="block w-full bg-green-400 text-white py-1.5 px-3 rounded transition
+        hover:bg-green-500 disabled:opacity-50 disabled:bg-green-400">
+        Submit
+    </button>
+</form>

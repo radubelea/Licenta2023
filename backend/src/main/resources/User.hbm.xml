@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.licenta2023.backend.domain.User" table="Users">
+        <id name="ID"  column="id">
+            <generator class="increment"/>
+        </id>
+        <property
+                name="name"
+                column="name"/>
+        <property
+                name="password"
+                column="password"/>
+        <property
+                name="age"
+                column="age"/>
+        <property
+                name="email"
+                column="email"/>
+    </class>
+</hibernate-mapping>

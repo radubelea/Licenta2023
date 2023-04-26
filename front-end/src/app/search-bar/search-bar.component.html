@@ -1,0 +1,8 @@
+<form #searchForm="ngForm" (ngSubmit)="getSearchResults()">
+        <mat-form-field class=" py-1.5 px-3 text-gray-200 transition
+        duration-500 focus:outline-none rounded bg-transparent
+        focus:border-green-400" subscriptSizing="dynamic">
+        <input matInput #searchQuery="ngModel" type="text" name="searchQuery" [(ngModel)]="search.searchQuery" placeholder="Search for a movie"/>
+        <mat-icon matPrefix>search</mat-icon>
+    </mat-form-field>
+</form>

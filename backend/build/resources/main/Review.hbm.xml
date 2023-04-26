@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.licenta2023.backend.domain.Review" table="Reviews">
+        <id name="ID"  column="id">
+            <generator class="increment"/>
+        </id>
+        <property
+                name="text"
+                column="text"/>
+        <property
+                name="rating"
+                column="rating"/>
+        <property
+                name="movieId"
+                column="movieId"
+            />
+        <many-to-one  name="reviewBy"
+                      class="com.licenta2023.backend.domain.User"
+                      lazy="false"
+                      column="reviewBy" />
+    </class>
+</hibernate-mapping>

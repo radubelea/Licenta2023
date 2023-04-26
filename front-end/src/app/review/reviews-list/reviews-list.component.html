@@ -1,0 +1,53 @@
+<mat-grid-list cols="1" rowHeight="350px" gutterSize="25px" class="container mx-auto relative z-50">
+    <mat-grid-tile *ngIf="noReviews else reviewList">
+        <h1 class="mx-auto"> This movie doesn't have any user reviews</h1>
+    </mat-grid-tile>
+    <ng-template #reviewList>
+        <mat-grid-tile *ngFor="let review of reviews">
+            <mat-card class="items-center px-8 w-3/5">
+                <mat-card-header class="bottom-full w-full bg-secondary text-white">
+                    <mat-card-title>
+
+                        <div class="flex items-center">
+                            <mat-icon color="accent">
+                                {{ 'star' }}
+                            </mat-icon>
+                            <mat-icon *ngIf="review.rating > 1" color="accent">
+                                {{ 'star' }}
+                            </mat-icon>
+                            <mat-icon *ngIf="review.rating > 2" color="accent">
+                                {{ 'star' }}
+                            </mat-icon>
+                            <mat-icon *ngIf="review.rating > 3" color="accent">
+                                {{ 'star' }}
+                            </mat-icon>
+                            <mat-icon *ngIf="review.rating > 4" color="accent">
+                                {{ 'star' }}
+                            </mat-icon>
+                            <mat-icon *ngIf="review.rating < 2" color="accent">
+                                {{ 'star_border' }}
+                            </mat-icon>
+                            <mat-icon *ngIf="review.rating < 3" color="accent">
+                                {{ 'star_border' }}
+                            </mat-icon>
+                            <mat-icon *ngIf="review.rating < 4" color="accent">
+                                {{ 'star_border' }}
+                            </mat-icon>
+                            <mat-icon *ngIf="review.rating < 5" color="accent">
+                                {{ 'star_border' }}
+                            </mat-icon>
+                        </div>
+                        <button *ngIf="review.userId == crtUserId" mat-mni-fab color="primary" (click)="deleteReview(review.id)">
+                            <mat-icon>delete</mat-icon>
+                          </button>
+                    </mat-card-title>
+                    <mat-card-subtitle class="text-gray-400 mb-6">By
+                        <span>{{ review.reviewBy }}</span></mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content class="font-bold mb-2 text-3xl">
+                    <p> {{ review.text }}</p>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+    </ng-template>
+</mat-grid-list>
